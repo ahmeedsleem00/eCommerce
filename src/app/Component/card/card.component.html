@@ -1,0 +1,29 @@
+
+<div class="bg-light p-5" *ngIf="cardData">
+
+    <button  class="btn btn-sm btn-danger d-block ms-auto">Clear Form</button>
+    <div *ngFor="let item of cardData.data.products" class="row border-bottom border-3 justify-content-between">
+        <div class="col-md-6">
+            <div  class="row my-2 align-items-center">
+                <div class="col-md-2">
+                    <img [src]="item.product.imageCover" class="w-100" alt="">
+                </div>
+                <div class="col-md-10">
+                    <h5>{{item.product.title}}</h5>
+                    <p>{{item.price | currency:"EGP"}}</p>
+                    <span  >
+                        <i (click)="deleteProduct(item.product._id)" class="fa-solid fa-trash text-danger fa-lg"></i>
+                        Remove
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <span class="btn btn-success btn-sm">+</span>
+            <span class="mx-3">{{item.count}}</span>
+            <span class="btn btn-danger btn-sm">-</span>
+        </div>
+    </div>
+    <h2 class="text-main">Total Price: {{cardData.data.totalCartPrice | currency:"EGP"}}</h2>
+
+</div>

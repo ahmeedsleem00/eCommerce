@@ -1,0 +1,37 @@
+<h1>Login:</h1>
+
+     <div class="alert alert-danger" *ngIf="errorMessage">
+          {{errorMessage}}
+     </div>     
+<form (ngSubmit)="submitLogin(loginForm)" [formGroup]="loginForm">
+          <!-- {{loginForm.get('name')?.errors | json}} -->
+     
+      
+         <div class="my-2">
+              <label for="email">email</label>    
+              <input type="text" formControlName="email" class="form-control" name="email" id="email">
+               <div *ngIf="loginForm.get('email')?.errors &&  loginForm.get('email')?.touched" class="alert alert-danger" > 
+                    
+                    <p *ngIf="loginForm.get('email')?.errors?.['required']">Email Required</p>
+                    <p *ngIf="loginForm.get('email')?.errors?.['email']">Email Not Vaild</p>
+               </div>
+              
+     
+         </div>
+         <div class="my-2">
+              <label for="password">password</label>
+              <input type="password" formControlName="password" class="form-control" name="password" id="password">
+              <div *ngIf="loginForm.get('password')?.errors &&  loginForm.get('password')?.touched" class="alert alert-danger" > 
+                    
+               <p *ngIf="loginForm.get('password')?.errors?.['required']">password Required</p>
+               <p *ngIf="loginForm.get('password')?.errors?.['pattern']">password Not Matched</p>
+          </div>
+         </div>
+        
+         <a routerLink="/forgetpassword" class="text-danger text-decoration-none ">Forget Password?.........</a>
+     <button  *ngIf="!loading"   type="submit" [disabled]="!loginForm.valid" class="btn btn-success ms-auto d-flex">Login</button>
+     <button *ngIf="loading" type="button" class="btn btn-success ms-auto d-flex">
+          <i class="fa-solid fa-spinner fa-spin"></i>
+     </button>
+     
+     </form>
